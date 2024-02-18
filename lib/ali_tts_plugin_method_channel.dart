@@ -9,41 +9,37 @@ import '../ali_tts_plugin_platform_interface.dart';
 class MethodChannelAliTtsPlugin extends AliTtsPluginPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
-  final methodChannel = const MethodChannel('ali_tts_plugin');
+  final ttsChannel = const MethodChannel('ChatTtsChannel');
+  @visibleForTesting
+  final transChannel = const MethodChannel('ChatTransChannel');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version =
-        await methodChannel.invokeMethod<String>('getPlatformVersion');
+  Future<String?> getTransSdkVersion() async {
+    final version = await ttsChannel.invokeMethod<String>('getTransSdkVersion');
     return version;
   }
 
   @override
-  Future<String?> getSdkVersion() async {
-    final version = await methodChannel.invokeMethod<String?>('getSdkVersion');
+  Future<String?> getTtsSdkVersion() async {
+    final version = await ttsChannel.invokeMethod<String?>('getTtsSdkVersion');
     return version;
   }
 
   @override
-  Future<bool> setAuthSDKInfo(
-      String androidAppSecret, String iosAppSecret) async {
-    final setAuthSDKInfo = await methodChannel.invokeMethod<bool>(
-        'setAuthSDKInfo',
-        {"androidAppSecret": androidAppSecret, "iosAppSecret": iosAppSecret});
-    return setAuthSDKInfo ?? false;
+  Future<bool> setTtsParams(Map<String, dynamic> info) async {
+    await ttsChannel.invokeMethod('setTtsParams', info);
+    return true;
   }
 
   @override
-  Future<bool> checkEnvAvailable() async {
-    final checkEnvAvailable =
-        await methodChannel.invokeMethod<bool>('checkEnvAvailable');
-    return checkEnvAvailable ?? false;
+  Future<bool> ttsPlay(Map<String, dynamic> info) async {
+    await ttsChannel.invokeMethod('ttsPlay', info);
+    return true;
   }
 
   @override
-  Future<bool> quitLoginPage() async {
-    final quitLoginPage =
-        await methodChannel.invokeMethod<bool>('quitLoginPage');
-    return quitLoginPage ?? false;
+  Future<bool> ttsCancel() async {
+    await ttsChannel.invokeMethod<bool>('ttsCancel');
+    return true;
   }
 }

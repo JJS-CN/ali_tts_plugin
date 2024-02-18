@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'ali_tts_plugin_method_channel.dart';
@@ -23,23 +25,23 @@ abstract class AliTtsPluginPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<String?> getTransSdkVersion() {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future<String?> getSdkVersion() {
-    throw UnimplementedError('getSdkVersion() has not been implemented.');
+  Future<String?> getTtsSdkVersion() {
+    throw UnimplementedError('getTtsSdkVersion() has not been implemented.');
   }
 
-  Future<bool> setAuthSDKInfo(String androidAppSecret, String iosAppSecret) {
+  Future<bool> setTtsParams(HashMap<String, dynamic> info) {
     throw UnimplementedError('setAuthSDKInfo() has not been implemented.');
   }
 
-  Future<bool> checkEnvAvailable() {
+  Future<bool> ttsPlay(HashMap<String, dynamic> info) {
     throw UnimplementedError('checkLogin() has not been implemented.');
   }
 
-  Future<bool> quitLoginPage() {
+  Future<bool> ttsCancel() {
     throw UnimplementedError('quitLoginPage() has not been implemented.');
   }
 }

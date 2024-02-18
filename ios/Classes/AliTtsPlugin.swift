@@ -4,6 +4,7 @@ import UIKit
 public class AliAuthPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
     let channel = FlutterMethodChannel(name: "ali_tts_plugin", binaryMessenger: registrar.messenger())
+    let channel2 = FlutterMethodChannel(name: "ali_tts_plugin2", binaryMessenger: registrar.messenger())
     let instance = AliAuthPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }

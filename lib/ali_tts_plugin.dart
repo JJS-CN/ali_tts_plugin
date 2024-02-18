@@ -1,24 +1,25 @@
+import 'dart:collection';
+
 import '../ali_tts_plugin_platform_interface.dart';
 
 class AliTtsPlugin {
-  Future<String?> getPlatformVersion() {
-    return AliTtsPluginPlatform.instance.getPlatformVersion();
+  Future<String?> getTtsSdkVersion() {
+    return AliTtsPluginPlatform.instance.getTtsSdkVersion();
   }
 
-  Future<String?> getSdkVersion() {
-    return AliTtsPluginPlatform.instance.getSdkVersion();
+  Future<String?> getTransSdkVersion() {
+    return AliTtsPluginPlatform.instance.getTransSdkVersion();
   }
 
-  Future<bool> setAuthSDKInfo(String androidAppSecret, String iosAppSecret) {
-    return AliTtsPluginPlatform.instance
-        .setAuthSDKInfo(androidAppSecret, iosAppSecret);
+  Future<bool> setTtsParams(HashMap<String, Object> info) {
+    return AliTtsPluginPlatform.instance.setTtsParams(info);
   }
 
-  Future<bool> checkEnvAvailable() {
-    return AliTtsPluginPlatform.instance.checkEnvAvailable();
+  Future<bool> ttsPlay(HashMap<String, Object> info) {
+    return AliTtsPluginPlatform.instance.ttsPlay(info);
   }
 
-  Future<bool> quitLoginPage() {
-    return AliTtsPluginPlatform.instance.quitLoginPage();
+  Future<bool> ttsCancel() {
+    return AliTtsPluginPlatform.instance.ttsCancel();
   }
 }
